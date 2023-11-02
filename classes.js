@@ -93,3 +93,37 @@ export class RoundRobinScheduler {
     console.table(this.initialProcesses)
   }
 }
+
+//ALgoritmo de Planificación FCFS
+export class ProcessFCFS {
+  constructor(name, arrivalTime, burstTime) {
+    this.name = name;
+    this.arrivalTime = arrivalTime;
+    this.burstTime = burstTime;
+  }
+}
+
+export class FCFSScheduler {
+  constructor() {
+    this.queue = [];
+  }
+
+  enqueue(process) {
+    this.queue.push(process);
+  }
+
+  run() {
+    let currentTime = 0;
+    while (this.queue.length > 0) {
+      const currentProcess = this.queue.shift();
+      if (currentProcess.arrivalTime > currentTime) {
+        currentTime = currentProcess.arrivalTime;
+      }
+      console.log(`Tiempo: ${currentTime} - Ejecutando proceso: ${currentProcess.name}`);
+      currentTime += currentProcess.burstTime;
+      console.log(`Tiempo: ${currentTime} - Proceso ${currentProcess.name} completado.`);
+    }
+  }
+}
+
+
