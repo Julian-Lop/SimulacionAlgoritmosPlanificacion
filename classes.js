@@ -122,17 +122,15 @@ export class RoundRobinScheduler {
           //Se guarda en una variable el primer proceso que se saca de los procesos que están llegando
           const newProcess = this.initialProcesses.shift()
           
+          //Se verifica si llega un proceso al inicio del Quantum
           if (i != 0) {
             this.processQueue.push(newProcess)
-
-            // console.log(`Agregado al final ${newProcess.name} | ciclo ${this.ciclo} `)
           } 
 
+          //Se verfica si está en otro momento que no sea el inicio del Quantum
           if (i == 0) {
             let temp = this.processQueue.pop()
             this.processQueue.push(newProcess,temp)
-            
-            // console.log(`Agregado al inicio ${newProcess.name} | ciclo ${this.ciclo} `)
           }
         }
 
@@ -141,27 +139,26 @@ export class RoundRobinScheduler {
 
         //Si el proceso terminó su Quantum y no se ha finalizado se agrega a la cola,
         //si ya finalizó su Quantum y también finalizó de ejcecutarse, se saca de la cola
-        if (i == 1 && currentProcess.timeLeft > 0) {
+        if (i == this.quantum-1 && currentProcess.timeLeft > 0) {
           this.processQueue.push(this.processQueue.shift())
-        }else if (i == 1 && currentProcess.timeLeft < 0) {
+        }else if (i == 1 && currentProcess.timeLeft < 1) {
           const  temp = this.processQueue.shift()
           console.log(`Proceso terminado ${temp.name} ✅`)
         }
 
         //Si el proceso finaliza su ejecución antes de finalizar su Quantum, se finaliza el Quantum
         //para darle paso al siguiente proceso
-        if (i < 1 && currentProcess.timeLeft < 0) {
+        if (i < this.quantum-1 && currentProcess.timeLeft < 1) {
           const  temp = this.processQueue.shift()
           console.log(`Proceso terminado ${temp.name} ✅`)
-          i = 1
+          i += this.quantum
         }
 
-        // console.log(`Proceso ${currentProcess.name} | CPU: ${currentProcess.timeLeft} | Ciclo ${this.ciclo} `)
+        console.log(`Proceso ${currentProcess.name} | CPU: ${currentProcess.timeLeft} | Ciclo ${this.ciclo} `)
 
         //Se incrementa el tiempo en 1
         this.ciclo += 1
       }
-
 
     }
   }
