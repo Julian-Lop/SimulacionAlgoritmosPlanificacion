@@ -108,7 +108,7 @@ export class FCFSScheduler {
   run() {
 
     // Se define una variable para hacer de contador de tiempo
-    let currentTime = 0;
+    let currentTime = -1;
 
     // Mientras existan procesos en la cola se ejecuta el siguiente código
     while (this.queue.length > 0) {
@@ -117,12 +117,12 @@ export class FCFSScheduler {
 
       // Se verifica que el tiempo de llegada del proceso es mayor que el tiempo actual
       // Entonces cambiamos el tiempo actual por el tiempo de llegada del proceso
-      if (currentProcess.timeInit > currentTime) {
+      if (currentProcess.timeInit-1 > currentTime) {
         currentTime = currentProcess.timeInit;
       }
 
       // Mostramos la ejecución del proceso en el tiempo específico
-      console.log(`Tiempo: ${currentTime} | Ejecutando proceso: ${currentProcess.name}`);
+      console.log(`Tiempo: ${currentTime+1} | Ejecutando proceso: ${currentProcess.name}`);
 
       // Le sumamos al tiempo actual el tiempo requerido por el proceso
       currentTime += currentProcess.timeLeft;
