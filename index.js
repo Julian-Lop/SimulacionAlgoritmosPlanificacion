@@ -26,10 +26,7 @@ scheduler.enqueue(processF);
 // scheduler.show()
 
 // Ejecutar el planificador Round Robin
-// scheduler.run();
-  
-
-
+scheduler.run();
 
 //FCFS -----------------------------
 
