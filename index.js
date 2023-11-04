@@ -1,5 +1,6 @@
-import { Process, RoundRobinScheduler } from "./classes.js";
-import { ProcessFCFS, FCFSScheduler } from "./classes.js";
+import { Process, RoundRobinScheduler, FCFSScheduler } from "./classes.js";
+
+//Round Robin
 
 // Crear procesos
 const processA = new Process("A", 0, 8);
@@ -21,10 +22,10 @@ scheduler.enqueue(processD);
 scheduler.enqueue(processE);
 scheduler.enqueue(processF);
 
-//Mostrar cola inicial
+// Mostrar cola inicial
 // scheduler.show()
 
-// Ejecutar el planificador
+// Ejecutar el planificador Round Robin
 // scheduler.run();
   
 
@@ -33,17 +34,17 @@ scheduler.enqueue(processF);
 //FCFS -----------------------------
 
 // Crear procesos
-const process1 = new ProcessFCFS("Proceso A", 0, 5);
-const process2 = new ProcessFCFS("Proceso B", 2, 3);
-const process3 = new ProcessFCFS("Proceso C", 4, 2);
+const process1 = new Process("Proceso A", 0, 5);
+const process2 = new Process("Proceso B", 2, 3);
+const process3 = new Process("Proceso C", 4, 2);
 
 // Crear un planificador FCFS
-const schedulerFCFS = new FCFSScheduler();
+const FCFSscheduler = new FCFSScheduler();
 
 // Agregar procesos a la cola del planificador
-schedulerFCFS.enqueue(process1);
-schedulerFCFS.enqueue(process2);
-schedulerFCFS.enqueue(process3);
+FCFSscheduler.enqueue(process1);
+FCFSscheduler.enqueue(process2);
+FCFSscheduler.enqueue(process3);
 
 // Ejecutar el planificador FCFS
-schedulerFCFS.run();
+FCFSscheduler.run();
