@@ -1,4 +1,4 @@
-# <em>Laboratorio: Llamdas al sistema </em>
+# <em>Laboratorio: Llamadas al sistema </em>
 
 ## 🛠️ Funcionalidades del proyecto
 
