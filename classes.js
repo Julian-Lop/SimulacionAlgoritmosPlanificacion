@@ -91,10 +91,6 @@ export class RoundRobinScheduler {
 
     }
   }
-
-  show() {
-    console.table(this.initialProcesses)
-  }
 }
 
 //ALgoritmo de Planificación FCFS
